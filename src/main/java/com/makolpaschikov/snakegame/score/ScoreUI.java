@@ -4,6 +4,8 @@ public interface ScoreUI {
 
     void reset();
 
-    void printScore();
+    int getScore();
+
+    void increaseScore();
 
 }

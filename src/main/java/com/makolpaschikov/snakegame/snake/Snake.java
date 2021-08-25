@@ -7,15 +7,20 @@ import java.util.List;
 
 public class Snake {
 
-    private final List<SnakePoint> SNAKE_TAIL = new ArrayList<>();
+    private final SnakePoint HEAD;
+    private final List<SnakePoint> TAIL = new ArrayList<>();
 
     public Snake() {
-        SNAKE_TAIL.add(new SnakePoint(MapParameters.WIDTH / 2, MapParameters.HEIGHT / 2));
-        SNAKE_TAIL.add(new SnakePoint(MapParameters.WIDTH / 2, MapParameters.HEIGHT / 2 + 1));
-        SNAKE_TAIL.add(new SnakePoint(MapParameters.WIDTH / 2, MapParameters.HEIGHT / 2 + 2));
+        HEAD = new SnakePoint(MapParameters.HEIGHT / 2, MapParameters.WIDTH / 2);
+        TAIL.add(new SnakePoint(MapParameters.HEIGHT / 2 + 1, MapParameters.WIDTH / 2));
+        TAIL.add(new SnakePoint(MapParameters.HEIGHT / 2 + 2, MapParameters.WIDTH / 2));
+    }
+
+    public SnakePoint getHead() {
+        return this.HEAD;
     }
 
     public List<SnakePoint> getTail() {
-        return this.SNAKE_TAIL;
+        return this.TAIL;
     }
 }

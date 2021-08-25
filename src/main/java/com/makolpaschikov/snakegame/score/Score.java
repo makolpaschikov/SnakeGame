@@ -1,6 +1,7 @@
 package com.makolpaschikov.snakegame.score;
 
 public class Score implements ScoreUI {
+
     private int score = 0;
 
     @Override
@@ -9,7 +10,14 @@ public class Score implements ScoreUI {
     }
 
     @Override
-    public void printScore() {
-        System.out.println("Score: " + score);
+    public int getScore() {
+        return this.score;
     }
+
+    @Override
+    public void increaseScore() {
+        this.score = this.score + 10;
+    }
+
+
 }
