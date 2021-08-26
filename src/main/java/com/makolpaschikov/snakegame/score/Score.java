@@ -19,5 +19,4 @@ public class Score implements ScoreUI {
         this.score = this.score + 10;
     }
 
-
 }
