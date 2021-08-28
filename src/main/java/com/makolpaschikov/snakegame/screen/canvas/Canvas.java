@@ -1,9 +1,9 @@
 package com.makolpaschikov.snakegame.screen.canvas;
 
-import com.makolpaschikov.snakegame.game_entity.apple.AppleList;
-import com.makolpaschikov.snakegame.game_entity.score.Score;
-import com.makolpaschikov.snakegame.game_entity.snake.Snake;
-import com.makolpaschikov.snakegame.game_entity.snake.SnakePoint;
+import com.makolpaschikov.snakegame.entity.apple.AppleList;
+import com.makolpaschikov.snakegame.entity.score.Score;
+import com.makolpaschikov.snakegame.entity.snake.Snake;
+import com.makolpaschikov.snakegame.entity.snake.SnakePoint;
 import com.makolpaschikov.snakegame.manager.RuntimeParameters;
 import com.makolpaschikov.snakegame.screen.ScreenParameters;
 

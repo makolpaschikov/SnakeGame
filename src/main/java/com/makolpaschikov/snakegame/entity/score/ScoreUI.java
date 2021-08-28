@@ -1,4 +1,4 @@
-package com.makolpaschikov.snakegame.game_entity.score;
+package com.makolpaschikov.snakegame.entity.score;
 
 public interface ScoreUI {
 

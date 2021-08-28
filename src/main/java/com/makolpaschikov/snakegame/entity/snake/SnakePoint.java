@@ -1,12 +1,12 @@
-package com.makolpaschikov.snakegame.game_entity.apple;
+package com.makolpaschikov.snakegame.entity.snake;
 
 import java.util.Objects;
 
-public class Apple {
+public class SnakePoint {
     private int x;
     private int y;
 
-    public Apple(int x, int y) {
+    public SnakePoint(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -31,8 +31,8 @@ public class Apple {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Apple apple = (Apple) o;
-        return x == apple.x && y == apple.y;
+        SnakePoint that = (SnakePoint) o;
+        return x == that.x && y == that.y;
     }
 
     @Override

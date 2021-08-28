@@ -1,11 +1,11 @@
 package com.makolpaschikov.snakegame.manager;
 
-import com.makolpaschikov.snakegame.game_entity.apple.AppleList;
-import com.makolpaschikov.snakegame.game_entity.score.Score;
-import com.makolpaschikov.snakegame.game_entity.snake.Snake;
-import com.makolpaschikov.snakegame.manager.move_controller.Direction;
-import com.makolpaschikov.snakegame.manager.move_controller.MoveController;
-import com.makolpaschikov.snakegame.manager.move_controller.TriggersChecker;
+import com.makolpaschikov.snakegame.entity.apple.AppleList;
+import com.makolpaschikov.snakegame.entity.score.Score;
+import com.makolpaschikov.snakegame.entity.snake.Snake;
+import com.makolpaschikov.snakegame.movement.Direction;
+import com.makolpaschikov.snakegame.movement.MovementController;
+import com.makolpaschikov.snakegame.movement.TriggersChecker;
 import com.makolpaschikov.snakegame.screen.GameScreen;
 
 public class GameManager implements GameManagerUI {
@@ -36,13 +36,13 @@ public class GameManager implements GameManagerUI {
 
             TriggersChecker.checkEatingApple(score, snake, apples);
             TriggersChecker.checkScore(score, snake, apples);
-            if (!TriggersChecker.checkSnakeCoordinates(snake)) {
+            if (!TriggersChecker.checkSnakeIsAlive(snake)) {
                 RuntimeParameters.gameIsRunning = false;
                 break;
             }
 
-            MoveController.updateDirection();
-            MoveController.moveSnake(snake);
+            MovementController.updateDirection();
+            MovementController.moveSnake(snake);
 
             try {
                 Thread.sleep(RuntimeParameters.gameSpeed);
@@ -72,7 +72,7 @@ public class GameManager implements GameManagerUI {
 
         RuntimeParameters.gameSpeed = 500;
         RuntimeParameters.gameIsRunning = true;
-        MoveController.setDirection(Direction.LEFT);
+        MovementController.setDirection(Direction.LEFT);
     }
 
 }

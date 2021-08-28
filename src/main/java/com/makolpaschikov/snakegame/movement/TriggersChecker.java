@@ -1,9 +1,9 @@
-package com.makolpaschikov.snakegame.manager.move_controller;
+package com.makolpaschikov.snakegame.movement;
 
-import com.makolpaschikov.snakegame.game_entity.apple.AppleList;
-import com.makolpaschikov.snakegame.game_entity.score.Score;
-import com.makolpaschikov.snakegame.game_entity.snake.Snake;
-import com.makolpaschikov.snakegame.game_entity.snake.SnakePoint;
+import com.makolpaschikov.snakegame.entity.apple.AppleList;
+import com.makolpaschikov.snakegame.entity.score.Score;
+import com.makolpaschikov.snakegame.entity.snake.Snake;
+import com.makolpaschikov.snakegame.entity.snake.SnakePoint;
 import com.makolpaschikov.snakegame.manager.RuntimeParameters;
 import com.makolpaschikov.snakegame.screen.canvas.CanvasParameters;
 
@@ -11,7 +11,10 @@ import java.util.List;
 
 public class TriggersChecker {
 
-    static public boolean checkSnakeCoordinates(Snake snake) {
+    /**
+     * Checks if the snake has not eaten its tail.
+     */
+    static public boolean checkSnakeIsAlive(Snake snake) {
         SnakePoint head = snake.getHead();
         List<SnakePoint> tail = snake.getTail();
         for (SnakePoint t : tail) {
@@ -22,6 +25,9 @@ public class TriggersChecker {
         return true;
     }
 
+    /**
+     * Checks the score and, depending on its value, changes the speed of the game and the number of apples on the map.
+     */
     static public void checkScore(Score score, Snake snake, AppleList apples) {
         if (score.getScore() >= 100 && score.getScore() < 200) {
             if (apples.getApples().size() != 2) {
@@ -56,6 +62,9 @@ public class TriggersChecker {
 
     }
 
+    /**
+     * Checks if the snake has not eaten an apple.
+     */
     static public void checkEatingApple(Score score, Snake snake, AppleList apples) {
         SnakePoint head = snake.getHead();
 
@@ -75,7 +84,7 @@ public class TriggersChecker {
 
         SnakePoint newPoint;
         SnakePoint lastTailPoint = tail.get(tail.size() - 1);
-        switch (MoveController.getDirection()) {
+        switch (MovementController.getDirection()) {
             case UP:
                 newPoint = new SnakePoint(lastTailPoint.getX(), lastTailPoint.getY() + CanvasParameters.SNAKE_SIZE);
                 break;
@@ -89,7 +98,7 @@ public class TriggersChecker {
                 newPoint = new SnakePoint(lastTailPoint.getX() - CanvasParameters.SNAKE_SIZE, lastTailPoint.getY());
                 break;
             default:
-                throw new IllegalStateException("Unexpected value: " + MoveController.getDirection());
+                throw new IllegalStateException("Unexpected value: " + MovementController.getDirection());
         }
         tail.add(newPoint);
     }

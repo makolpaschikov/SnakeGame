@@ -1,4 +1,4 @@
-package com.makolpaschikov.snakegame.manager.move_controller;
+package com.makolpaschikov.snakegame.movement;
 
 import com.makolpaschikov.snakegame.manager.RuntimeParameters;
 
@@ -14,6 +14,9 @@ public class KeyboardController implements KeyListener {
     public void keyPressed(KeyEvent e) {
     }
 
+    /**
+     * Adds a direction to the traffic queue {@link MovementController#addMovementToQueue(Direction)}.
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         setDirection(e.getKeyCode());
@@ -22,16 +25,16 @@ public class KeyboardController implements KeyListener {
     static private void setDirection(int keyCode) {
         switch (keyCode) {
             case KeyEvent.VK_A:
-                MoveController.addMoveToQueue(Direction.LEFT);
+                MovementController.addMovementToQueue(Direction.LEFT);
                 break;
             case KeyEvent.VK_D:
-                MoveController.addMoveToQueue(Direction.RIGTH);
+                MovementController.addMovementToQueue(Direction.RIGTH);
                 break;
             case KeyEvent.VK_W:
-                MoveController.addMoveToQueue(Direction.UP);
+                MovementController.addMovementToQueue(Direction.UP);
                 break;
             case KeyEvent.VK_S:
-                MoveController.addMoveToQueue(Direction.DOWN);
+                MovementController.addMovementToQueue(Direction.DOWN);
                 break;
             case KeyEvent.VK_ESCAPE:
                 RuntimeParameters.gameIsRunning = false;

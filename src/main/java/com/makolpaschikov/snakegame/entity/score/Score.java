@@ -1,8 +1,8 @@
-package com.makolpaschikov.snakegame.game_entity.score;
+package com.makolpaschikov.snakegame.entity.score;
 
 public class Score implements ScoreUI {
 
-    private int score = 200;
+    private int score = 0;
 
     @Override
     public void reset() {
@@ -16,7 +16,7 @@ public class Score implements ScoreUI {
 
     @Override
     public void increaseScore() {
-        this.score = this.score + 70;
+        this.score = this.score + 20;
     }
 
 }

@@ -1,6 +1,6 @@
-package com.makolpaschikov.snakegame.game_entity.apple;
+package com.makolpaschikov.snakegame.entity.apple;
 
-import com.makolpaschikov.snakegame.game_entity.snake.Snake;
+import com.makolpaschikov.snakegame.entity.snake.Snake;
 import com.makolpaschikov.snakegame.screen.canvas.CanvasParameters;
 
 import java.util.ArrayList;

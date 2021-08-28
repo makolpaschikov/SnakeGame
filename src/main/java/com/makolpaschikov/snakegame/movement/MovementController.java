@@ -1,18 +1,22 @@
-package com.makolpaschikov.snakegame.manager.move_controller;
+package com.makolpaschikov.snakegame.movement;
 
-import com.makolpaschikov.snakegame.game_entity.snake.Snake;
-import com.makolpaschikov.snakegame.game_entity.snake.SnakePoint;
+import com.makolpaschikov.snakegame.entity.snake.Snake;
+import com.makolpaschikov.snakegame.entity.snake.SnakePoint;
 import com.makolpaschikov.snakegame.screen.canvas.CanvasParameters;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class MoveController {
+public class MovementController {
 
     static private Direction direction = Direction.LEFT;
+
     static private final Queue<Direction> moveQueue = new LinkedList<>();
 
+    /**
+     * Moves the snake according to the direction.
+     */
     static public void moveSnake(Snake snake) {
         SnakePoint snakeHead = snake.getHead();
         SnakePoint headCoordinates = new SnakePoint(snakeHead.getX(), snakeHead.getY());
@@ -21,13 +25,21 @@ public class MoveController {
         updateTailCoordinates(snake.getTail(), headCoordinates);
     }
 
-    static public void addMoveToQueue(Direction direction) {
+    /**
+     * Adds the following traffic direction to the queue.
+     *
+     * @param direction traffic direction
+     */
+    static public void addMovementToQueue(Direction direction) {
         moveQueue.add(direction);
     }
 
+    /**
+     * Takes the current direction of movement from the queue and exposes it.
+     */
     static public void updateDirection() {
         if (moveQueue.size() != 0) {
-            MoveController.direction = moveQueue.poll();
+            MovementController.direction = moveQueue.poll();
         }
     }
 
@@ -73,7 +85,7 @@ public class MoveController {
     }
 
     public static void setDirection(Direction direction) {
-        MoveController.direction = direction;
+        MovementController.direction = direction;
     }
 
     static private void updateTailCoordinates(List<SnakePoint> snakeTail, SnakePoint headCoordinates) {

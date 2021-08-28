@@ -1,9 +1,9 @@
 package com.makolpaschikov.snakegame.screen;
 
-import com.makolpaschikov.snakegame.game_entity.apple.AppleList;
-import com.makolpaschikov.snakegame.game_entity.score.Score;
-import com.makolpaschikov.snakegame.game_entity.snake.Snake;
-import com.makolpaschikov.snakegame.manager.move_controller.KeyboardController;
+import com.makolpaschikov.snakegame.entity.apple.AppleList;
+import com.makolpaschikov.snakegame.entity.score.Score;
+import com.makolpaschikov.snakegame.entity.snake.Snake;
+import com.makolpaschikov.snakegame.movement.KeyboardController;
 import com.makolpaschikov.snakegame.screen.canvas.Canvas;
 
 import javax.swing.*;
@@ -37,6 +37,13 @@ public class GameScreen extends JFrame implements GameScreenUI {
                 (screenSize.height / 2) - (ScreenParameters.HEIGHT / 2));
     }
 
+    /**
+     * Displays the game data on the canvas.
+     *
+     * @param score  current game score
+     * @param apples generated apples
+     * @param snake  current state of the snake
+     */
     @Override
     public void draw(Score score, AppleList apples, Snake snake) {
         this.canvas.setData(score, apples, snake);

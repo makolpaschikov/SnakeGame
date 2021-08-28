@@ -1,4 +1,4 @@
-package com.makolpaschikov.snakegame.game_entity.snake;
+package com.makolpaschikov.snakegame.entity.snake;
 
 import com.makolpaschikov.snakegame.screen.canvas.CanvasParameters;
 
