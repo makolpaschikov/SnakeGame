@@ -9,9 +9,9 @@ Snake game on java and swing
 
 ### Managment ###
 1. Movement
-  * Button 'W' - move to the top
-  * Button 'A' - move to the left
-  * Button 'S' - move to the bottom
-  * Button 'D' - move to the right
+   * Button 'W' - move to the top
+   * Button 'A' - move to the left
+   * Button 'S' - move to the bottom
+   * Button 'D' - move to the right
 2. To restart after the end of the game click 'ENTER'
 3. To complete the game click 'ESCAPE' 
