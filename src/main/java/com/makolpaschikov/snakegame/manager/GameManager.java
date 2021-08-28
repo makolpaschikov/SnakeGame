@@ -1,27 +1,37 @@
 package com.makolpaschikov.snakegame.manager;
 
-import com.makolpaschikov.snakegame.manager.questioner.UserQuestioner;
-import com.makolpaschikov.snakegame.map.GameMap;
-import com.makolpaschikov.snakegame.score.Score;
-import com.makolpaschikov.snakegame.snake.Snake;
+import com.makolpaschikov.snakegame.game_entity.score.Score;
+import com.makolpaschikov.snakegame.game_entity.snake.Snake;
+import com.makolpaschikov.snakegame.manager.move_controller.MoveController;
+import com.makolpaschikov.snakegame.screen.GameScreen;
 
 public class GameManager implements GameManagerUI {
 
-    private final Snake SNAKE;
-    private final Score SCORE;
-    private final GameMap GAME_MAP;
+    private final Snake snake;
+    private final Score score;
+    private final GameScreen gameScreen;
 
     public GameManager() {
-        SNAKE = new Snake();
-        SCORE = new Score();
-        GAME_MAP = new GameMap();
+        score = new Score();
+        snake = new Snake();
+        gameScreen = new GameScreen(snake);
     }
 
     @Override
     public void start() {
-        UserQuestioner.askUserAboutReadiness();
-        GAME_MAP.resetMap();
-        GAME_MAP.printMap(SCORE, SNAKE);
+        startGameCycle();
+    }
+
+    private void startGameCycle(){
+        while (RuntimeParameters.gameIsRunning) {
+            gameScreen.updateMap(snake);
+            MoveController.moveSnake(snake);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                // The exception is ignored, since the current thread is not affected by other threads
+            }
+        }
     }
 
 }

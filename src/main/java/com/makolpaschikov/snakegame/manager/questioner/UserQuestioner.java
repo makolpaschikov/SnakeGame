@@ -6,7 +6,7 @@ public class UserQuestioner {
 
     static public void askUserAboutReadiness() {
         ConsoleUtil.clearConsole();
-        ConsoleUtil.println("Enter 'y' if you are ready, otherwise enter 'n' \n Are you ready to start (y/n)?: ");
+        ConsoleUtil.println("Enter 'y' if you are ready, otherwise enter 'n'\nAre you ready to start (y/n)?: ");
         String answer = ConsoleUtil.readString();
 
         switch (answer) {

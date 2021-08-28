@@ -1,5 +1,6 @@
 package com.makolpaschikov.snakegame.util;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class ConsoleUtil {
@@ -20,6 +21,14 @@ public class ConsoleUtil {
 
     static public String readString() {
         return CONSOLE.nextLine();
+    }
+
+    static public String readKey() {
+        if (CONSOLE.hasNext()) {
+            return CONSOLE.nextLine();
+        } else {
+            return null;
+        }
     }
 
     static public void clearConsole() {

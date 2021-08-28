@@ -1,4 +1,4 @@
-package com.makolpaschikov.snakegame.score;
+package com.makolpaschikov.snakegame.game_entity.score;
 
 public class Score implements ScoreUI {
 
