@@ -1,5 +1,6 @@
 package com.makolpaschikov.snakegame.screen;
 
+import com.makolpaschikov.snakegame.game_entity.apple.AppleList;
 import com.makolpaschikov.snakegame.game_entity.score.Score;
 import com.makolpaschikov.snakegame.manager.move_controller.KeyboardController;
 import com.makolpaschikov.snakegame.screen.canvas.Canvas;
@@ -12,9 +13,9 @@ public class GameScreen extends JFrame {
 
     private final Canvas canvas;
 
-    public GameScreen(Score score, Snake snake) throws HeadlessException {
+    public GameScreen(Score score, AppleList apples, Snake snake) throws HeadlessException {
         super(ScreenParameters.GAME_TITLE);
-        this.canvas = new Canvas(score, snake);
+        this.canvas = new Canvas(score, apples, snake);
         createGUI();
     }
 
@@ -36,8 +37,8 @@ public class GameScreen extends JFrame {
                 (screenSize.height / 2) - (ScreenParameters.HEIGHT / 2));
     }
 
-    public void updateMap(Score score, Snake snake) {
-        this.canvas.setData(score, snake);
+    public void updateMap(Score score, AppleList apples, Snake snake) {
+        this.canvas.setData(score, apples, snake);
         this.canvas.repaint();
     }
 

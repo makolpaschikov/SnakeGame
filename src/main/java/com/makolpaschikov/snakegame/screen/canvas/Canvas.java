@@ -1,5 +1,6 @@
 package com.makolpaschikov.snakegame.screen.canvas;
 
+import com.makolpaschikov.snakegame.game_entity.apple.AppleList;
 import com.makolpaschikov.snakegame.game_entity.score.Score;
 import com.makolpaschikov.snakegame.game_entity.score.snake.SnakePoint;
 import com.makolpaschikov.snakegame.game_entity.snake.Snake;
@@ -13,19 +14,22 @@ public class Canvas extends JComponent {
 
     private Snake snake;
     private Score score;
+    private AppleList apples;
 
-    public Canvas(Score score, Snake snake) {
+    public Canvas(Score score, AppleList apples, Snake snake) {
         this.score = score;
         this.snake = snake;
+        this.apples = apples;
     }
 
     @Override
     public void paintComponent(Graphics g) {
         Graphics2D graphics = (Graphics2D) g;
-        paintScreenBackground(graphics);
-        printScore(graphics);
         clearCanvas(graphics);
+        paintScreenBackground(graphics);
         paintMapBackground(graphics);
+        printScore(graphics);
+        paintApples(graphics);
         paintSnake(graphics);
     }
 
@@ -34,9 +38,10 @@ public class Canvas extends JComponent {
         paintComponent(getGraphics());
     }
 
-    public void setData(Score score, Snake snake) {
+    public void setData(Score score, AppleList apples, Snake snake) {
         this.score = score;
         this.snake = snake;
+        this.apples = apples;
     }
 
     private void clearCanvas(Graphics2D graphics) {
@@ -52,17 +57,28 @@ public class Canvas extends JComponent {
         graphics.fillRect(0, 0, ScreenParameters.WIDTH, ScreenParameters.HEIGHT);
     }
 
-    private void printScore(Graphics2D graphics) {
-        graphics.setColor(Color.GREEN);
-        graphics.drawString("Score: " + score.getScore(), CanvasParameters.SCORE_POS_X, CanvasParameters.SCORE_POS_Y);
-    }
-
     private void paintMapBackground(Graphics2D graphics) {
         graphics.setColor(CanvasParameters.MAP_BACKGROUND_COLOR);
         graphics.fillRect(
                 CanvasParameters.MAP_START_POS_X,
                 CanvasParameters.MAP_START_POS_Y,
                 CanvasParameters.WIDTH, CanvasParameters.HEIGHT
+        );
+    }
+
+    private void printScore(Graphics2D graphics) {
+        graphics.setColor(CanvasParameters.SCORE_COLOR);
+        graphics.drawString("Score: " + score.getScore(), CanvasParameters.SCORE_POS_X, CanvasParameters.SCORE_POS_Y);
+    }
+
+    private void paintApples(Graphics2D graphics) {
+        graphics.setColor(Color.RED);
+        apples.getApples().forEach(a ->
+                graphics.fillRect(
+                        a.getX() + CanvasParameters.MAP_START_POS_X,
+                        a.getY() + CanvasParameters.MAP_START_POS_Y,
+                        CanvasParameters.SNAKE_SIZE, CanvasParameters.SNAKE_SIZE
+                )
         );
     }
 

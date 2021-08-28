@@ -1,5 +1,6 @@
 package com.makolpaschikov.snakegame.manager;
 
+import com.makolpaschikov.snakegame.game_entity.apple.AppleList;
 import com.makolpaschikov.snakegame.game_entity.score.Score;
 import com.makolpaschikov.snakegame.game_entity.snake.Snake;
 import com.makolpaschikov.snakegame.manager.move_controller.MoveController;
@@ -9,12 +10,14 @@ public class GameManager implements GameManagerUI {
 
     private final Snake snake;
     private final Score score;
+    private final AppleList apples;
     private final GameScreen gameScreen;
 
     public GameManager() {
         score = new Score();
         snake = new Snake();
-        gameScreen = new GameScreen(score, snake);
+        apples = new AppleList(snake);
+        gameScreen = new GameScreen(score, apples, snake);
     }
 
     @Override
@@ -24,7 +27,7 @@ public class GameManager implements GameManagerUI {
 
     private void startGameCycle(){
         while (RuntimeParameters.gameIsRunning) {
-            gameScreen.updateMap(score, snake);
+            gameScreen.updateMap(score, apples, snake);
 
             if (!MoveController.сheckSnakeCoordinates(snake)) {
                 return;
