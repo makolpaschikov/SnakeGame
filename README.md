@@ -15,3 +15,8 @@ Snake game on java and swing
    * Button 'D' - move to the right
 2. To restart after the end of the game click 'ENTER'
 3. To complete the game click 'ESCAPE' 
+
+### Starting the game ###
+1. Download Java 11
+2. Download JAR from folder 'out/artifacts/SnakeGame_jar'
+3. Launch: java -jar PATH_TO_JAR/SnakeGame.jar
