@@ -19,7 +19,11 @@ public class AppleList {
         return apples;
     }
 
-    public Apple generateApple(Snake snake) {
+    public void generateNewApple(Snake snake) {
+        this.apples.add(generateApple(snake));
+    }
+
+    private Apple generateApple(Snake snake) {
         int x = generateCoordinateX();
         int y = generateCoordinateY();
         Apple apple = new Apple(x, y);

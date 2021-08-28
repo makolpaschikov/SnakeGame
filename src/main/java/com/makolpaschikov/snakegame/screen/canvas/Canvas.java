@@ -2,8 +2,9 @@ package com.makolpaschikov.snakegame.screen.canvas;
 
 import com.makolpaschikov.snakegame.game_entity.apple.AppleList;
 import com.makolpaschikov.snakegame.game_entity.score.Score;
-import com.makolpaschikov.snakegame.game_entity.score.snake.SnakePoint;
 import com.makolpaschikov.snakegame.game_entity.snake.Snake;
+import com.makolpaschikov.snakegame.game_entity.snake.SnakePoint;
+import com.makolpaschikov.snakegame.manager.RuntimeParameters;
 import com.makolpaschikov.snakegame.screen.ScreenParameters;
 
 import javax.swing.*;
@@ -68,7 +69,11 @@ public class Canvas extends JComponent {
 
     private void printScore(Graphics2D graphics) {
         graphics.setColor(CanvasParameters.SCORE_COLOR);
-        graphics.drawString("Score: " + score.getScore(), CanvasParameters.SCORE_POS_X, CanvasParameters.SCORE_POS_Y);
+        if (RuntimeParameters.gameIsRunning) {
+            graphics.drawString("Score: " + score.getScore(), CanvasParameters.SCORE_POS_X, CanvasParameters.SCORE_POS_Y);
+        } else {
+            graphics.drawString("Game over! Press ENTER to restart. Score: " + score.getScore(), CanvasParameters.SCORE_POS_X, CanvasParameters.SCORE_POS_Y);
+        }
     }
 
     private void paintApples(Graphics2D graphics) {
@@ -83,13 +88,18 @@ public class Canvas extends JComponent {
     }
 
     private void paintSnake(Graphics2D graphics) {
-        paintSnakeHead(graphics);
         paintSnakeTail(graphics);
+        paintSnakeHead(graphics);
     }
 
     private void paintSnakeHead(Graphics2D graphics) {
+        if (RuntimeParameters.gameIsRunning) {
+            graphics.setColor(CanvasParameters.SNAKE_HEAD_COLOR);
+        } else {
+            graphics.setColor(Color.PINK);
+        }
+
         SnakePoint head = this.snake.getHead();
-        graphics.setColor(CanvasParameters.SNAKE_HEAD_COLOR);
         graphics.fillRect(
                 head.getX() + CanvasParameters.MAP_START_POS_X,
                 head.getY() + CanvasParameters.MAP_START_POS_Y,

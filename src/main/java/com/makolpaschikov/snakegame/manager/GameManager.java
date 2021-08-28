@@ -3,14 +3,16 @@ package com.makolpaschikov.snakegame.manager;
 import com.makolpaschikov.snakegame.game_entity.apple.AppleList;
 import com.makolpaschikov.snakegame.game_entity.score.Score;
 import com.makolpaschikov.snakegame.game_entity.snake.Snake;
+import com.makolpaschikov.snakegame.manager.move_controller.Direction;
 import com.makolpaschikov.snakegame.manager.move_controller.MoveController;
+import com.makolpaschikov.snakegame.manager.move_controller.TriggersChecker;
 import com.makolpaschikov.snakegame.screen.GameScreen;
 
 public class GameManager implements GameManagerUI {
 
-    private final Snake snake;
-    private final Score score;
-    private final AppleList apples;
+    private Snake snake;
+    private Score score;
+    private AppleList apples;
     private final GameScreen gameScreen;
 
     public GameManager() {
@@ -22,17 +24,24 @@ public class GameManager implements GameManagerUI {
 
     @Override
     public void start() {
-        startGameCycle();
+        runGameCycle();      // Started game cycle
+        waitUserReadiness(); // After the end of the game, it expects the user to start the game again
+        refreshGameData();   // Resets the game to the initial settings
+        start();             // Starts the game again
     }
 
-    private void startGameCycle(){
+    private void runGameCycle() {
         while (RuntimeParameters.gameIsRunning) {
-            gameScreen.updateMap(score, apples, snake);
+            gameScreen.draw(score, apples, snake);
 
-            if (!MoveController.сheckSnakeCoordinates(snake)) {
-                return;
+            TriggersChecker.checkEatingApple(score, snake, apples);
+            TriggersChecker.checkScore(score, snake, apples);
+            if (!TriggersChecker.checkSnakeCoordinates(snake)) {
+                RuntimeParameters.gameIsRunning = false;
+                break;
             }
 
+            MoveController.updateDirection();
             MoveController.moveSnake(snake);
 
             try {
@@ -41,6 +50,29 @@ public class GameManager implements GameManagerUI {
                 // The exception is ignored, since the current thread is not affected by other threads
             }
         }
+
+        gameScreen.draw(score, apples, snake);
+    }
+
+    private void waitUserReadiness() {
+        RuntimeParameters.gamerNotReadyToRestart = true;
+        while (RuntimeParameters.gamerNotReadyToRestart) {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                // The exception is ignored, since the current thread is not affected by other threads
+            }
+        }
+    }
+
+    private void refreshGameData() {
+        score = new Score();
+        snake = new Snake();
+        apples = new AppleList(snake);
+
+        RuntimeParameters.gameSpeed = 500;
+        RuntimeParameters.gameIsRunning = true;
+        MoveController.setDirection(Direction.LEFT);
     }
 
 }

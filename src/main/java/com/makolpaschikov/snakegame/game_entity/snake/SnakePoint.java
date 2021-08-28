@@ -1,4 +1,4 @@
-package com.makolpaschikov.snakegame.game_entity.score.snake;
+package com.makolpaschikov.snakegame.game_entity.snake;
 
 import java.util.Objects;
 

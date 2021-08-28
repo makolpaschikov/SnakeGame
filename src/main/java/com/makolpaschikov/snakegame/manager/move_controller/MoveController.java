@@ -1,14 +1,17 @@
 package com.makolpaschikov.snakegame.manager.move_controller;
 
-import com.makolpaschikov.snakegame.game_entity.score.snake.SnakePoint;
 import com.makolpaschikov.snakegame.game_entity.snake.Snake;
+import com.makolpaschikov.snakegame.game_entity.snake.SnakePoint;
 import com.makolpaschikov.snakegame.screen.canvas.CanvasParameters;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class MoveController {
 
     static private Direction direction = Direction.LEFT;
+    static private final Queue<Direction> moveQueue = new LinkedList<>();
 
     static public void moveSnake(Snake snake) {
         SnakePoint snakeHead = snake.getHead();
@@ -18,19 +21,14 @@ public class MoveController {
         updateTailCoordinates(snake.getTail(), headCoordinates);
     }
 
-    static public boolean сheckSnakeCoordinates(Snake snake) {
-        SnakePoint head = snake.getHead();
-        List<SnakePoint> tail = snake.getTail();
-        for (SnakePoint t : tail) {
-            if (t.equals(head)) {
-                return false;
-            }
-        }
-        return true;
+    static public void addMoveToQueue(Direction direction) {
+        moveQueue.add(direction);
     }
 
-    public static void setDirection(Direction direction) {
-        MoveController.direction = direction;
+    static public void updateDirection() {
+        if (moveQueue.size() != 0) {
+            MoveController.direction = moveQueue.poll();
+        }
     }
 
     static private void updateHeadCoordinates(SnakePoint snakeHead) {
@@ -68,6 +66,14 @@ public class MoveController {
                 break;
             }
         }
+    }
+
+    public static Direction getDirection() {
+        return direction;
+    }
+
+    public static void setDirection(Direction direction) {
+        MoveController.direction = direction;
     }
 
     static private void updateTailCoordinates(List<SnakePoint> snakeTail, SnakePoint headCoordinates) {

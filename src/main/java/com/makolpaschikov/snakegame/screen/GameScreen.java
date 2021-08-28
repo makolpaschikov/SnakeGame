@@ -2,14 +2,14 @@ package com.makolpaschikov.snakegame.screen;
 
 import com.makolpaschikov.snakegame.game_entity.apple.AppleList;
 import com.makolpaschikov.snakegame.game_entity.score.Score;
+import com.makolpaschikov.snakegame.game_entity.snake.Snake;
 import com.makolpaschikov.snakegame.manager.move_controller.KeyboardController;
 import com.makolpaschikov.snakegame.screen.canvas.Canvas;
-import com.makolpaschikov.snakegame.game_entity.snake.Snake;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class GameScreen extends JFrame {
+public class GameScreen extends JFrame implements GameScreenUI {
 
     private final Canvas canvas;
 
@@ -37,7 +37,8 @@ public class GameScreen extends JFrame {
                 (screenSize.height / 2) - (ScreenParameters.HEIGHT / 2));
     }
 
-    public void updateMap(Score score, AppleList apples, Snake snake) {
+    @Override
+    public void draw(Score score, AppleList apples, Snake snake) {
         this.canvas.setData(score, apples, snake);
         this.canvas.repaint();
     }

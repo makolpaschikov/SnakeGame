@@ -1,6 +1,5 @@
 package com.makolpaschikov.snakegame.game_entity.snake;
 
-import com.makolpaschikov.snakegame.game_entity.score.snake.SnakePoint;
 import com.makolpaschikov.snakegame.screen.canvas.CanvasParameters;
 
 import java.util.ArrayList;

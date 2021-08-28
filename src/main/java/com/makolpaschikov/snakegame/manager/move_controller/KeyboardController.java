@@ -8,12 +8,10 @@ import java.awt.event.KeyListener;
 public class KeyboardController implements KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {
-        setDirection(e.getKeyCode());
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        setDirection(e.getKeyCode());
     }
 
     @Override
@@ -24,19 +22,22 @@ public class KeyboardController implements KeyListener {
     static private void setDirection(int keyCode) {
         switch (keyCode) {
             case KeyEvent.VK_A:
-                MoveController.setDirection(Direction.LEFT);
+                MoveController.addMoveToQueue(Direction.LEFT);
                 break;
             case KeyEvent.VK_D:
-                MoveController.setDirection(Direction.RIGTH);
+                MoveController.addMoveToQueue(Direction.RIGTH);
                 break;
             case KeyEvent.VK_W:
-                MoveController.setDirection(Direction.UP);
+                MoveController.addMoveToQueue(Direction.UP);
                 break;
             case KeyEvent.VK_S:
-                MoveController.setDirection(Direction.DOWN);
+                MoveController.addMoveToQueue(Direction.DOWN);
                 break;
             case KeyEvent.VK_ESCAPE:
                 RuntimeParameters.gameIsRunning = false;
+                break;
+            case KeyEvent.VK_ENTER:
+                RuntimeParameters.gamerNotReadyToRestart = false;
                 break;
         }
     }
