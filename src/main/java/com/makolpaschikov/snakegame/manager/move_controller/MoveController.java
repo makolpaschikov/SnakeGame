@@ -8,7 +8,7 @@ import java.util.List;
 
 public class MoveController {
 
-    static private Direction direction = Direction.DOWN;
+    static private Direction direction = Direction.LEFT;
 
     static public void moveSnake(Snake snake) {
         SnakePoint snakeHead = snake.getHead();

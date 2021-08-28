@@ -14,7 +14,7 @@ public class GameManager implements GameManagerUI {
     public GameManager() {
         score = new Score();
         snake = new Snake();
-        gameScreen = new GameScreen(snake);
+        gameScreen = new GameScreen(score, snake);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class GameManager implements GameManagerUI {
 
     private void startGameCycle(){
         while (RuntimeParameters.gameIsRunning) {
-            gameScreen.updateMap(snake);
+            gameScreen.updateMap(score, snake);
             MoveController.moveSnake(snake);
             try {
                 Thread.sleep(500);

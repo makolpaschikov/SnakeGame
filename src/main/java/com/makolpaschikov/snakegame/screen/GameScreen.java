@@ -1,5 +1,6 @@
 package com.makolpaschikov.snakegame.screen;
 
+import com.makolpaschikov.snakegame.game_entity.score.Score;
 import com.makolpaschikov.snakegame.manager.move_controller.KeyboardController;
 import com.makolpaschikov.snakegame.screen.canvas.Canvas;
 import com.makolpaschikov.snakegame.game_entity.snake.Snake;
@@ -11,15 +12,16 @@ public class GameScreen extends JFrame {
 
     private final Canvas canvas;
 
-    public GameScreen(Snake snake) throws HeadlessException {
+    public GameScreen(Score score, Snake snake) throws HeadlessException {
         super(ScreenParameters.GAME_TITLE);
-        this.canvas = new Canvas(snake);
+        this.canvas = new Canvas(score, snake);
         createGUI();
     }
 
     private void createGUI() {
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         super.setSize(ScreenParameters.WIDTH, ScreenParameters.HEIGHT);
+        super.setBackground(Color.BLACK);
         this.setScreenLocation();
         super.add(canvas);
         super.setResizable(false);
@@ -34,8 +36,8 @@ public class GameScreen extends JFrame {
                 (screenSize.height / 2) - (ScreenParameters.HEIGHT / 2));
     }
 
-    public void updateMap(Snake snake) {
-        this.canvas.setSnake(snake);
+    public void updateMap(Score score, Snake snake) {
+        this.canvas.setData(score, snake);
         this.canvas.repaint();
     }
 

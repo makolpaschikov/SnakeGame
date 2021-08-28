@@ -22,7 +22,6 @@ public class KeyboardController implements KeyListener {
     }
 
     static private void setDirection(int keyCode) {
-        System.out.println(keyCode);
         switch (keyCode) {
             case KeyEvent.VK_A:
                 MoveController.setDirection(Direction.LEFT);
