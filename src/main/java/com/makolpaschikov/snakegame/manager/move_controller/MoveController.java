@@ -26,21 +26,33 @@ public class MoveController {
         switch (direction) {
             case UP: {
                 int yCoordinate = snakeHead.getY();
+                if (yCoordinate == 0) {
+                    yCoordinate = CanvasParameters.HEIGHT;
+                }
                 snakeHead.setY(yCoordinate - CanvasParameters.SNAKE_SIZE);
                 break;
             }
             case DOWN: {
                 int yCoordinate = snakeHead.getY();
+                if (yCoordinate == (CanvasParameters.HEIGHT - CanvasParameters.SNAKE_SIZE)) {
+                    yCoordinate = -CanvasParameters.SNAKE_SIZE;
+                }
                 snakeHead.setY(yCoordinate + CanvasParameters.SNAKE_SIZE);
                 break;
             }
             case LEFT: {
                 int xCoordinate = snakeHead.getX();
+                if (xCoordinate == 0) {
+                    xCoordinate = CanvasParameters.WIDTH;
+                }
                 snakeHead.setX(xCoordinate - CanvasParameters.SNAKE_SIZE);
                 break;
             }
             case RIGTH: {
                 int xCoordinate = snakeHead.getX();
+                if (xCoordinate == CanvasParameters.WIDTH - CanvasParameters.SNAKE_SIZE) {
+                    xCoordinate = -CanvasParameters.SNAKE_SIZE;
+                }
                 snakeHead.setX(xCoordinate + CanvasParameters.SNAKE_SIZE);
                 break;
             }

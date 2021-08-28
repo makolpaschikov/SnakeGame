@@ -27,7 +27,7 @@ public class GameManager implements GameManagerUI {
             gameScreen.updateMap(score, snake);
             MoveController.moveSnake(snake);
             try {
-                Thread.sleep(500);
+                Thread.sleep(RuntimeParameters.gameSpeed);
             } catch (InterruptedException e) {
                 // The exception is ignored, since the current thread is not affected by other threads
             }
