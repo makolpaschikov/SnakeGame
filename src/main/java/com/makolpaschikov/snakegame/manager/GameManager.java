@@ -25,7 +25,13 @@ public class GameManager implements GameManagerUI {
     private void startGameCycle(){
         while (RuntimeParameters.gameIsRunning) {
             gameScreen.updateMap(score, snake);
+
+            if (!MoveController.сheckSnakeCoordinates(snake)) {
+                return;
+            }
+
             MoveController.moveSnake(snake);
+
             try {
                 Thread.sleep(RuntimeParameters.gameSpeed);
             } catch (InterruptedException e) {

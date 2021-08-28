@@ -18,6 +18,17 @@ public class MoveController {
         updateTailCoordinates(snake.getTail(), headCoordinates);
     }
 
+    static public boolean сheckSnakeCoordinates(Snake snake) {
+        SnakePoint head = snake.getHead();
+        List<SnakePoint> tail = snake.getTail();
+        for (SnakePoint t : tail) {
+            if (t.equals(head)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static void setDirection(Direction direction) {
         MoveController.direction = direction;
     }
